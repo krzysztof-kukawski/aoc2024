@@ -4,7 +4,7 @@ import re
 cwd = os.path.dirname(__file__)
 input_path = os.path.join(cwd, "puzzle_input_day2")
 
-with open(input_path, 'r', encoding="utf8") as puzzle_file:
+with open(input_path, "r", encoding="utf8") as puzzle_file:
     puzzle_lines = puzzle_file.readlines()
 
 reports = []
@@ -21,7 +21,7 @@ class Report:
         self.was_increasing = None
         self.decreasing = None
 
-    def check_safe(self):
+    def check_safe(self) -> bool:
         self.increasing = self._check_increasing()
         if not self.increasing and not self.was_increasing:
             self.decreasing = self._check_decreasing()
@@ -29,21 +29,21 @@ class Report:
             return True
         return False
 
-    def _check_increasing(self):
+    def _check_increasing(self) -> bool:
         for i, level in enumerate(self.levels[1:]):
             diff = level - self.levels[i]
             if not self._check_diff(diff):
                 return False
         return True
 
-    def _check_decreasing(self):
+    def _check_decreasing(self) -> bool:
         for i, level in enumerate(self.levels[1:]):
             diff = self.levels[i] - level
             if not self._check_diff(diff):
                 return False
         return True
 
-    def _check_diff(self, diff: int):
+    def _check_diff(self, diff: int) -> bool:
         if diff < 1 or diff > 3:
             return False
         else:
