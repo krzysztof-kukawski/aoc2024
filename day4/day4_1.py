@@ -30,7 +30,7 @@ class Xmas:
         return puzzle_result
 
     @staticmethod
-    def transpose_results(results: list[bool]) -> list[bool]:
+    def transpose_results(results: list[list[bool]]) -> list[list[bool]]:
         transposed = []
         for i in range(8):
             partial = []

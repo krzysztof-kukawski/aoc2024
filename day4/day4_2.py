@@ -18,15 +18,11 @@ def get_locations_of_as(words: list[str]) -> list[tuple[int, int]]:
     return locations
 
 
-
-
 def check_direction():
     res = []
     for i in ((-1, -1), (1, 1), (1, -1), (-1, 1)):
         res.append(i)
     return res
-
-
 
 
 def check_single_spot(start: tuple, directions: tuple) -> "str":
@@ -48,6 +44,7 @@ def check_set_of_directions(start: tuple, directions: list[tuple]):
     for i in directions:
         results.append(check_single_spot(start, i))
     return results
+
 
 locs = get_locations_of_as(puzzle_text)
 checks = check_direction()
