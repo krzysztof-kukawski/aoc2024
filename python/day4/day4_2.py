@@ -25,7 +25,7 @@ def check_direction():
     return res
 
 
-def check_single_spot(start: tuple, directions: tuple) -> "str":
+def check_single_spot(start: tuple, directions: tuple) -> str | None:
     try:
         x = start[0] + directions[0]
         y = start[1] + directions[1]
