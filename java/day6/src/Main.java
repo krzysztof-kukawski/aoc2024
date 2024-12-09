@@ -30,7 +30,7 @@ public class Main {
         }
         System.out.println("Part 1: " + guard.visited.size());
         System.out.println("Part 2: " + c);
-        }
-
     }
+
+}
 

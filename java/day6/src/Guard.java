@@ -4,7 +4,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Guard {
@@ -26,11 +25,21 @@ public class Guard {
 
     }
 
+    public static boolean isInArrayList(ArrayList<int[]> listOfItems, int[] item) {
+        for (int[] i : listOfItems) {
+            if (Arrays.equals(i, item)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void move() throws Exception {
+        int maxIndex = this.order.length;
         int c = 0;
         try {
             while (true) {
-                if (c == 4) {
+                if (c > maxIndex) {
                     c = 0;
                 }
                 if (!step()) {
@@ -59,7 +68,7 @@ public class Guard {
 
     public void readFile() throws FileNotFoundException {
         Path workingDir = Paths.get(System.getProperty("user.dir"));
-        Path fileDir = Paths.get(workingDir.toString(),"java" ,"day6","puzzle_input_day6");
+        Path fileDir = Paths.get(workingDir.toString(), "java", "day6", "puzzle_input_day6");
         File puzzleFile = new File(fileDir.toString());
         Scanner puzzleReader = new Scanner(puzzleFile);
         while (puzzleReader.hasNext()) {
@@ -89,21 +98,12 @@ public class Guard {
         }
     }
 
-    public static boolean isInArrayList(ArrayList<int[]> listOfItems, int[] item) {
-        for (int[] i : listOfItems) {
-            if (Arrays.equals(i, item)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     private void addTrace() throws Exception {
         int[][] trace = {{this.row, this.column}, this.direction};
 
         for (int[][] i : this.path) {
             if (Arrays.deepEquals(i, trace)) {
-                throw new NoSuchElementException("infinite loop");
+                throw new Exception("infinite loop");
             }
         }
 
